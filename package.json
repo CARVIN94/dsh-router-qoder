@@ -1,6 +1,6 @@
 {
   "name": "dsh-router-qoder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DSH plugin: Qoder supplier family for dsh-router. Provides two same-protocol suppliers through the router.suppliers cordis service: qoder (Qoder CN, gateway.qoder.com.cn) and qoder-global (api1.qoder.sh). Both share one implementation (cosy signer, jobToken exchange, SSE conversion); only the gateway profile differs.",
   "repository": {
     "type": "git",
