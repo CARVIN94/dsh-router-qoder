@@ -8,7 +8,8 @@
  *
  * chat 与模型列表不受这条限制（它们走 cosy 面，不吃设备风控头）。
  *
- * ⚠️ `id = 'qoder-global'` **同时是凭证与配置的存储键**，改它 = 账号全部消失。
+ * ⚠️ `id = 'qoder-global'` **同时是凭证与配置的存储键**（`credentials.sqlite` 的
+ * `supplier` 列、`supplier-config.json` 的键），改它 = 账号全部消失。
  */
 import type { ModelInfo } from './types.ts'
 import type { QoderProfile } from './core.ts'

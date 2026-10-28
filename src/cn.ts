@@ -5,8 +5,9 @@
  * 区域决定的主机与端点表在 upstream.ts 的 `QODER_REGIONS` 里 —— 那是**唯一**一处
  * 事实，profile 只说「我是哪个区域」，不重复写域名。
  *
- * ⚠️ `id = 'qoder'` **同时是凭证与配置的存储键**（auths/qoder、
- * supplier-config.json、积分缓存）。改它 = 已添加的账号全部消失。
+ * ⚠️ `id = 'qoder'` **同时是凭证与配置的存储键**（`credentials.sqlite` 的
+ * `supplier` 列、`supplier-config.json` 的键，含积分缓存）。改它 = 已添加的
+ * 账号全部消失。
  */
 import type { ModelInfo } from './types.ts'
 import type { QoderProfile } from './core.ts'
