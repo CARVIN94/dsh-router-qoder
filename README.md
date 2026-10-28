@@ -3,6 +3,7 @@
 <p align="center">dsh-router 的 Qoder 族供应商插件（国内版 + 国际版）</p>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/dsh-router-qoder"><img src="https://img.shields.io/npm/v/dsh-router-qoder?style=flat-square&logo=npm&label=npm" alt="npm version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-10b981?style=flat-square" alt="MIT license"></a>
   <a href="https://www.npmjs.com/package/@deepseek-ai/dsh?activeTab=versions"><img alt="支持的 DSH 版本：0.2.0+" src="https://img.shields.io/badge/DSH-0.2.0%2B-4d6bfe" /></a>
 </p>
@@ -68,16 +69,12 @@ dsh plugin --profile web add dsh-router-core
 dsh plugin --profile web add dsh-router-qoder
 ```
 
-> **本包尚未发布到 npm**（截至 2026-10-28，`dsh-router-qoder` 在 registry 上是 404），
-> 所以现在第二条命令会失败。发布前请用下面的 `link:` 方式装本地仓库；发布后这段提示
-> 就可以删掉。
-
 `dsh plugin add` 会在 profile 里 `pnpm add`，并自动把声明了 `dsh.bundle.patch`
 的包加入 `dsh.profile.bundles`（本插件即声明了，即 `cordis.patch.yml`）。
 
 > 本地开发版：不用 npm，直接 `dependencies` 加
 > `"dsh-router-qoder": "link:/path/to/dsh-router-qoder"` 指向本地仓库
-> （当前本机 profile 就是这么装的，改完 `pnpm build` 再重启 `dsh web` 即生效）。
+> （本机 profile 就是这么装的，改完 `pnpm build` 再重启 `dsh web` 即生效）。
 
 重启后本插件以 cordis service `router.suppliers` 向 dsh-router 注册两个供应商，
 面板「供应商」出现 **Qoder** 与 **Qoder Global** 两张卡片。
