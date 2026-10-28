@@ -11,7 +11,8 @@
  *   4. chat 请求是**cosy 编码后的密文**、带 `Bearer COSY.*` 与 cosy 头；
  *   5. 上游 SSE 信封被转成 OpenAI SSE（含 role/content/usage/[DONE]）；
  *   6. 错误分类：403+code110 是额度耗尽（不是凭据被拒），401 才是凭证失效；
- *   7. 积分读 sash（jt- 令牌）、模型目录过滤上游的 `auto` 路由；
+ *   7. 积分读 sash（jt- 令牌）、模型目录过滤上游的 `auto` 路由、并带上
+ *      `display_name`（面板靠它显示可读名，请求仍用 key）；
  *   8. 签到走活动接口，`CLAIMED` 幂等算成功。
  *
  * 运行：npm test（node --test，靠 Node 内建 TS 类型剥离）。
