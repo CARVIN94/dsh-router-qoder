@@ -31,8 +31,10 @@ export const profile: QoderProfile = {
   uidPrefix: 'qd',
   defaultNickname: 'Qoder',
   errPrefix: 'qoder',
-  apiKeyHint: '粘贴 Qoder 个人访问令牌（PAT，形如 pt-…）。插件只在本机用它换 jobToken，'
-    + '之后的请求都带签名会话；PAT 不会发给 Qoder 网关以外的任何地方。'
-    + '国内版与 Qoder 国际版是两个不同的供应商，PAT 不通用。',
+  // 弹窗里唯一能看到「去哪儿拿」的地方：只写令牌形状不写入口，用户只能自己去搜。
+  apiKeyHint: '粘贴 Qoder 个人访问令牌（PAT，形如 pt-…）。在哪拿：登录 qoder.cn / qoder.com.cn 控制台 → '
+    + '设置 → 个人访问令牌（旧版页面叫「API 令牌」）→ 创建令牌，复制只显示一次的 pt-…。'
+    + '令牌按区域签发，国内版的 pt-… 在国际版卡片上无效（反之亦然）。'
+    + '插件只在本机用它换 jobToken，之后的请求都带签名会话；PAT 不会发给 Qoder 网关以外的任何地方。',
   fallbackModels: FALLBACK_MODELS,
 }

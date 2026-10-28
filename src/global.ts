@@ -26,7 +26,11 @@ export const profile: QoderProfile = {
   uidPrefix: 'qdg',
   defaultNickname: 'Qoder Global',
   errPrefix: 'qoder-global',
-  apiKeyHint: '粘贴 Qoder 国际版（qoder.sh）的个人访问令牌（PAT，形如 pt-…）。'
+  // 国际版控制台域名是 qoder.com（`qoder.sh` 只有网关/开放 API 主机名，没有网页）；
+  // 写成 qoder.sh 会让用户去访问一个解析不出来域名。
+  apiKeyHint: '粘贴 Qoder 国际版的个人访问令牌（PAT，形如 pt-…）。在哪拿：登录 qoder.com '
+    + '控制台 → Settings → Personal Access Tokens → 创建（复制只显示一次的 pt-…）。'
+    + '令牌按区域签发，国际版的 pt-… 在国内版卡片上无效（反之亦然）。'
     + '国际版的积分与每日签到还需要本机安装 Qoder 客户端（设备风控组件），'
     + '只有 PAT 时聊天与模型可用，积分/签到会如实报错。',
   fallbackModels: FALLBACK_MODELS,

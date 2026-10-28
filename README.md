@@ -101,10 +101,34 @@ dsh plugin --profile web add dsh-router-qoder
 > 本地开发版：不用 npm，直接 `dependencies` 加
 > `"dsh-router-qoder": "link:/path/to/dsh-router-qoder"` 指向本地仓库。
 
+## 取 PAT（添加账号前的一次性准备）
+
+本插件只认 **PAT**（Personal Access Token，`pt-` 开头）。两个区域**各签发一份、互不通用**：
+
+| 用哪个卡片 | 控制台 | 入口 |
+|---|---|---|
+| Qoder（国内版） | [qoder.cn](https://qoder.cn)（同 `qoder.com.cn`） | 设置 → **个人访问令牌**（旧页面/旧文档写作「API 令牌」）→ 创建令牌 |
+| Qoder Global（国际版） | [qoder.com](https://qoder.com) | Settings → **Personal Access Tokens** → Create token（注意不是 `qoder.sh`——那只是网关/开放 API 的主机名，没有网页控制台） |
+
+创建时填名称（只是给你自己看的备注），有效期按需选；**完整令牌只在创建那一刻显示一次**，
+当场复制。漏了就只能删掉重建。
+
+官方原文（令牌格式与作用域说明）：
+
+- 国内版：[docs.qoder.cn · 认证](https://docs.qoder.cn/cloud-agents/api-authentication.md)
+- 国际版：[docs.qoder.com · Authentication](https://docs.qoder.com/cloud-agents/api/conventions/authentication)
+
+两件容易踩的事：
+
+- **别把令牌提交进仓库或贴进 issue**：它等价于你的账号权限，谁拿到都能以你的身份调接口。
+- **区域对不上会被拒**：国内版的 `pt-…` 贴进国际版卡片（或反之）一定校验失败，这不是插件坏了。
+  弹窗里会把这条也写上——省得你去猜是复制错了还是过期了。
+
 ## 使用
 
 1. 重启 `dsh web`
 2. 面板 → 供应商 → Qoder / Qoder Global 卡片 → 添加 API key → 粘贴 PAT
+   （从哪个入口拿见上一节；粘贴时带上 `Bearer ` 前缀也能识别，它会被剥掉）
 3. 点「获取模型」从上游拉目录，勾选要用的模型
 4. 请求模型可写 `qmodel_xxx` 或带别名前缀 `qoder/qmodel_xxx`（插件自动剥前缀）
 
