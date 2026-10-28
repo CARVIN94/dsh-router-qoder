@@ -202,11 +202,18 @@ export function createSupplier(p: QoderProfile): (env: SupplierEnv) => SupplierM
       return []
     }
 
-    /** 上游模型 → 契约的 `ModelInfo`（面板按 k 显示上下文，与别的插件一致）。 */
+    /**
+     * 上游模型 → 契约的 `ModelInfo`。
+     *
+     * `id` 是上游 key（`qmodel_38max`）—— 组合里存的、请求里发的都是它；
+     * `name` 带上游的 `display_name`（`Qwen3.8-Max`），面板拿它做主标签。
+     * 不带 name 的话，面板上只剩一串猜不出含义的 key，「获取模型」之后
+     * 用户仍然不知道自己勾的是哪个模型。`context_length` 按 k 报，与别的插件一致。
+     */
     function toModelInfo(m: QoderModel): ModelInfo {
       return m.maxInputTokens === undefined
-        ? { id: m.key }
-        : { id: m.key, context_length: Math.round(m.maxInputTokens / 1000) }
+        ? { id: m.key, name: m.displayName }
+        : { id: m.key, name: m.displayName, context_length: Math.round(m.maxInputTokens / 1000) }
     }
 
     async function allModels(force: boolean): Promise<ModelInfo[]> {
@@ -227,7 +234,7 @@ export function createSupplier(p: QoderProfile): (env: SupplierEnv) => SupplierM
       // 不是「当前可用模型」。
       return (list.length > 0 ? list : p.fallbackModels.map((m) => ({
         key: m.id,
-        displayName: m.id,
+        displayName: m.name ?? m.id,
         enable: true,
         isDefault: false,
         isVl: false,

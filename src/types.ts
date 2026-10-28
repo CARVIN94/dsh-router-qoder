@@ -24,7 +24,13 @@ export interface SupplierStatus {
 
 /** OpenAI 模型条目。 */
 export interface ModelInfo {
+  /** 上游模型 key（`qmodel_38max`）——组合、路由、请求都用它。 */
   id: string
+  /**
+   * 可读名（上游目录的 `display_name`，如 `Qwen3.8-Max`），**只用于显示**。
+   * 核心把它画在主标签上；请求仍然只认 `id`。
+   */
+  name?: string
   context_length?: number
 }
 

@@ -47,7 +47,8 @@ cordis.patch.yml  bundle patch，把插件插入 DSH cordis bundle stack
 | 能力 | 说明 |
 |---|---|
 | 添加账号（PAT） | 弹窗粘贴 `pt-…`。先交换 jobToken 校验，成功才落盘，昵称取上游下发的账号名；同一 PAT 不会重复建号。 |
-| 模型列表 | 「获取模型」从 `GET /algo/api/v2/model/list` 实时拉取。**上游的 `auto` 不列出来**：它是该区的默认路由（请求时才决定解析成哪个模型），不是可描述的模型。没有 PAT 时列表为空——这是正确状态，不是故障。 |
+| 模型列表 | 「获取模型」从 `GET /algo/api/v2/model/list` 实时拉取，**面板显示上游的 `display_name`、请求仍用上游 key**（见下条）。**上游的 `auto` 不列出来**：它是该区的默认路由（请求时才决定解析成哪个模型），不是可描述的模型。没有 PAT 时列表为空——这是正确状态，不是故障。 |
+| 模型名对照 | 上游 key 是内部标识（`qmodel_38max`、`kmodel_latest`），人读的是 `display_name`（`Qwen3.8-Max`、`Kimi-K3.1-Pro`）。插件把两者都报给核心：**面板、搜索、组合挑选显示可读名**，**组合里存的、请求发的仍是 key**。2026-10-28 国内版实测快照（会随上游变，以面板为准）：`qmodel_38max`=Qwen3.8-Max · `qfmodel`=Qwen3.8-Flash · `dmodel`=DeepSeek-V4-Pro · `dfmodel`=DeepSeek-Flash · `gmodel`=GLM-5.3 · `gfmodel`=GLM-5.3-Flash · `kmodel_latest`=Kimi-K3.1-Pro · `kmodel`=Kimi-K2.8-Preview · `mmodel`=MiniMax-M3.1-Flash。命名规律只是巧合（`q`=Qwen、`d`=DeepSeek、`g`=GLM、`k`=Kimi、`m`=MiniMax，`f` 后缀=Flash、`_latest`=同族较新），**不要照规律猜 key**。 |
 | 对话 | 直连 cosy 网关：请求体走 Qoder 私有模板（`chat_context`/`model_config`/`business`/`session_id`），body 经自定义 base64 加密后参与签名；响应 SSE 转成 OpenAI SSE（含 `reasoning_content`、`tool_calls`、`usage`、`[DONE]`）。 |
 | 思考强度 | 核心给的推理等级按上游约定的**两处同时写**（顶层 `reasoningEffort` + `parameters.reasoning_effort`）——官方客户端如此，只写一个可能被某个区域忽略。 |
 | 积分显示 | 面板账号积分 = `sash/api/v2/me/usage` 的剩余量（基础包 + 加量包 + 企业包），内存缓存 10 分钟。读不到报 `-1`（不是 0），核心据此保留上次持久化的值。 |

@@ -375,7 +375,7 @@ test('流内信封错误：发一条 OpenAI error 帧 + [DONE]，并上报迟到
 
 // ---------------------------------------------------------------- 模型
 
-test('模型目录：读上游 chat[]，过滤 auto 路由，上下文按 k 报', async () => {
+test('模型目录：读上游 chat[]，过滤 auto 路由，带上可读名，上下文按 k 报', async () => {
   const { env, calls } = harness({ cred: { nickname: 'N', pat: PAT } })
   route(calls, (url) => {
     if (url.includes('/api/v1/jobToken/exchange')) return jsonResponse({ token: 'sash' })
@@ -393,9 +393,11 @@ test('模型目录：读上游 chat[]，过滤 auto 路由，上下文按 k 报'
     return jsonResponse({}, 500)
   })
   const models = await createSupplier(cn)(env).listModels(true)
+  // id = 上游 key（组合/请求认它），name = display_name（面板只拿它显示）：
+  // 少了 name，面板上就只有 `qmodel_38max` 这种猜不出含义的 key。
   assert.deepEqual(models, [
-    { id: 'qmodel_38max', context_length: 200 },
-    { id: 'qmodel_flash' },
+    { id: 'qmodel_38max', name: 'Qwen3.8-Max', context_length: 200 },
+    { id: 'qmodel_flash', name: 'Qwen3.8-Flash' },
   ])
 })
 
