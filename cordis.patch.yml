@@ -1,0 +1,10 @@
+# dsh-router-qoder bundle patch
+#
+# Mounts dsh-router-qoder into the DSH cordis bundle stack. This plugin
+# registers the qoder supplier FAMILY (qoder + qoder-global) into the
+# `router.suppliers` cordis service (host half) so dsh-router can load them.
+# dsh-router defers via ctx.inject until the service is available, so order vs
+# dsh-router doesn't matter.
+- insert:
+    - id: dsh-router-qoder
+      name: 'dsh-router-qoder'

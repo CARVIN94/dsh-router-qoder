@@ -1,0 +1,8 @@
+/**
+ * qoder 族供应商共用的面板图标 —— 内联 SVG data URI。
+ *
+ * 为什么内联：图标不该依赖另一个服务活着，更不该依赖特定端口。国内版与国际版
+ * 同族，共用同一张图（只有 name 不同）。
+ */
+export const QODER_ICON =
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE0IiBmaWxsPSIjMmI2YmZmIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSI2Ii8+PHJlY3QgeD0iMzgiIHk9IjM3IiB3aWR0aD0iMTIiIGhlaWdodD0iNiIgcng9IjMiIHRyYW5zZm9ybT0icm90YXRlKDQ1IDM4IDM3KSIgZmlsbD0iI2ZmZmZmZiIvPjwvc3ZnPg=='
